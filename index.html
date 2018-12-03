@@ -27,19 +27,26 @@
                     <button button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
                         aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <i class="glyphicon glyphicon-align-center"></i>
                     </button>
-                    <a class="navbar-brand">Gharbi's MAP</a>
+                    <a href="" class="navbar-brand">Gharbi's MAP</a>
                 </div>
 
                 <div id="navbar" class="collapse navbar-collapse navbar-responsive-collapse">
 
+                    <!-- Navbar Links -->
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="" data-toggle="modal" data-target=".bs-example-modal-lg"><b>Change Style</b></a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="getCPosition();"><b>Current position</b></a>
+                        </li>
+                    </ul>
+ 
                     <div class="navbar-form navbar-right" role="search" method="get" id="searchform" action="">
                         <div class="form-group">
                             <input id="pac-input" class="form-control mr-sm-2" type="search" placeholder="SearchBox" aria-label="Search">
-                            <button class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg">New Style</button>
                         </div>
                     </div>
                 </div>
