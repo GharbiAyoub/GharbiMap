@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Gharbi's MAP</title>
+    <link rel="shortcut icon" href="https://freeiconshop.com/wp-content/uploads/edd/location-marker-flat.png">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-cylYXk7D3NvvOEhscctAk0PRJTdAOLk&libraries=places&callback=initAutocomplete"
+        async defer></script>
+    <script src="js/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!--Start Header-->
+    <header>
+        <div class="navbar navbar-default" style="margin-bottom: 0">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                        aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand">Gharbi's MAP</a>
+                </div>
+
+                <div id="navbar" class="collapse navbar-collapse navbar-responsive-collapse">
+
+                    <div class="navbar-form navbar-right" role="search" method="get" id="searchform" action="">
+                        <div class="form-group">
+                            <input id="pac-input" class="form-control mr-sm-2" type="search" placeholder="SearchBox" aria-label="Search">
+                            <button class="btn btn-success" data-toggle="modal" data-target=".bs-example-modal-lg">New Style</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <!--End Header-->
+    <div id="map"></div>
+    <!-- Start Modal-->
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="width: 50%">
+            <div class="modal-content">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img class="img-responsive" src="https://snazzy-maps-cdn.azureedge.net/assets/151-ultra-light-with-labels.png?v=20170626083737"
+                                width="100%" alt="...">
+                            <div class="carousel-caption">
+
+
+                                <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="UpdateStyle(3)">Select Style</button>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="img-responsive" src="https://snazzy-maps-cdn.azureedge.net/assets/99427-.png?v=20170329080414" alt="..." width="100%">
+                            <div class="carousel-caption">
+                                <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="UpdateStyle(0)">Select Style</button>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="img-responsive" src="https://snazzy-maps-cdn.azureedge.net/assets/38-shades-of-grey.png?v=20170626083726" width="100%"
+                                alt="...">
+                            <div class="carousel-caption">
+                                <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="UpdateStyle(1)">Select Style</button>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img class="img-responsive" src="https://snazzy-maps-cdn.azureedge.net/assets/8007-black-and-white-without-labels.png?v=20170626071756"
+                                width="100%" alt="...">
+                            <div class="carousel-caption">
+                                <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="UpdateStyle(2)">Select Style</button>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img class="img-responsive" src="https://snazzy-maps-cdn.azureedge.net/assets/28-bluish.png?v=20170626080658" width="100%"
+                                alt="...">
+                            <div class="carousel-caption">
+                                <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="UpdateStyle(4)">Select Style</button>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img class="img-responsive" src="https://snazzy-maps-cdn.azureedge.net/assets/225554-weird-realms.png?v=20180807044441" width="100%"
+                                alt="...">
+                            <div class="carousel-caption">
+                                <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="UpdateStyle(5)">Select Style</button>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img class="img-responsive" src="./images/OSM.png" width="100%"
+                                alt="...">
+                            <div class="carousel-caption">
+                                <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="UpdateStyle(6)">Select Style</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Modal-->
+    <script src="./js/styles/lost _in_the_desert_style.js"></script>
+    <script src="./js/styles/shades-of-grey_style.js"></script>
+    <script src="./js/styles/subtle-grayscale_style.js"></script>
+    <script src="./js/styles/ultra-light-with-labels_style.js"></script>
+    <script src="./js/styles/black-and-white-without-labels.js"></script>
+    <script src="./js/styles/bluish.js"></script>
+    <script src="./js/styles/weird-realms_style.js"></script>
+</body>
+
+</html>
