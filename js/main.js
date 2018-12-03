@@ -89,19 +89,24 @@ function initAutocomplete() {
 window.onload = function () {
     //alert('Gharbi');
     //Define OSM map type pointing at the OpenStreetMap tile server
-    map.mapTypes.set("OSM", new google.maps.ImageMapType({
-        getTileUrl: function (coord, zoom) {
-            var tilesPerGlobe = 1 << zoom;
-            var x = coord.x % tilesPerGlobe;
-            if (x < 0) {
-                x = tilesPerGlobe + x;
-            }
-            return "http://tile.openstreetmap.org/" + zoom + "/" + x + "/" + coord.y + ".png";
-        },
-        tileSize: new google.maps.Size(256, 256),
-        name: "OpenStreetMap",
-        maxZoom: 18
-    }));
+    try{
+        map.mapTypes.set("OSM", new google.maps.ImageMapType({
+            getTileUrl: function (coord, zoom) {
+                var tilesPerGlobe = 1 << zoom;
+                var x = coord.x % tilesPerGlobe;
+                if (x < 0) {
+                    x = tilesPerGlobe + x;
+                }
+                return "http://tile.openstreetmap.org/" + zoom + "/" + x + "/" + coord.y + ".png";
+            },
+            tileSize: new google.maps.Size(256, 256),
+            name: "OpenStreetMap",
+            maxZoom: 18
+        }));
+    }catch{
+        //alert('Map API Probleme');
+        initAutocomplete();
+    }
 }
 
 function UpdateStyle(id) {
