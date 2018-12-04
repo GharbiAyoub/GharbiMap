@@ -3,7 +3,8 @@
 // pick list containing a mix of places and predicted search terms.
 
 var map;
-
+var cityCircle;
+var markercenter;
 function initAutocomplete() {
     try {
 
@@ -16,7 +17,6 @@ function initAutocomplete() {
 
         //Map Click
         google.maps.event.addListener(map, 'click', function (event) {
-            var distanceWidget = new DistanceWidget(map, event.latLng);
         });
 
         // Create the search box and link it to the UI element.
@@ -175,17 +175,8 @@ function getCPosition() {
                 console.log('latitude', position.coords.latitude,
                     'longitude', position.coords.longitude);
 
-                var center= {lat: position.coords.latitude, lng: position.coords.longitude};
-                var cityCircle = new google.maps.Circle({
-                    strokeColor: '#0000FF',
-                    strokeOpacity: 0.8,
-                    strokeWeight: 0.5,
-                    fillColor: '#0000FF',
-                    fillOpacity: 0.3,
-                    map: map,
-                    center: center,
-                    radius: 1000
-                });
+                var center = { lat: position.coords.latitude, lng: position.coords.longitude };
+                addCircle(center);
                 map.setCenter(center);
                 map.setZoom(14);
             },
@@ -199,4 +190,40 @@ function getCPosition() {
         // get your location some other way
         console.log('geolocation is not enabled on this browser')
     }
+}
+
+function addCircle(center) {
+    try {
+        cityCircle.setMap(null);
+        markercenter.setMap(null);
+    } catch (error) {
+        //alert(error)
+    }
+    /*markercenter = new google.maps.Marker({
+        position: center,
+        icon: {
+            url: 'http://www.clicage.com/ilyatoo/objets/produits/LOGO%20POINT%20BLEU.png'
+        },
+        map: map,
+    });*/
+    markercenter = new google.maps.Circle({
+        strokeColor: '#0000FF',
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: '#0000FF',
+        fillOpacity: 10,
+        map: map,
+        center: center,
+        radius: 50
+    });
+    cityCircle = new google.maps.Circle({
+        strokeColor: '#0000FF',
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: '#0000FF',
+        fillOpacity: 0.3,
+        map: map,
+        center: center,
+        radius: 1000
+    });
 }
